@@ -324,8 +324,8 @@ internal object PatchCommand : Runnable {
                         keyStorePassword,
                         keyStoreEntryAlias,
                         keyStoreEntryPassword,
+						signLevels,
                     ),
-                    signLevels,
                 )
             } else {
                 patchedApkFile.copyTo(outputFilePath, overwrite = true)
