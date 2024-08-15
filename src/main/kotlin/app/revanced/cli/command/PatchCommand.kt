@@ -184,7 +184,7 @@ internal object PatchCommand : Runnable {
 
     @CommandLine.Option(
         names = ["--signing-levels"],
-        description = ["Output apk signing levels, eg. \"1,2,3,4\", empty as default."],
+        description = ["Output apk signing levels, eg. \"1,2,3\", empty as default."],
         converter = [SignLevelsConverter::class],
         arity = "0..1",
     )
