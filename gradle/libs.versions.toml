@@ -16,4 +16,4 @@ revanced-library = { module = "kofua.app.revanced:revanced-library", version.ref
 
 [plugins]
 shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
-kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" 
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
