@@ -273,7 +273,6 @@ internal object PatchCommand : Runnable {
                 aaptBinaryPath?.path,
                 patcherTemporaryFilesPath.absolutePath,
                 true,
-                shortenResourcePaths = true,
             ),
         ).use { patcher ->
             val packageName = patcher.context.packageMetadata.packageName
