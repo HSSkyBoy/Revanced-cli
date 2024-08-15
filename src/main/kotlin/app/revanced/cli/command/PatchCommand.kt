@@ -324,7 +324,6 @@ internal object PatchCommand : Runnable {
                         keyStorePassword,
                         keyStoreEntryAlias,
                         keyStoreEntryPassword,
-						signLevels,
                     ),
                 )
             } else {
