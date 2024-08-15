@@ -71,7 +71,6 @@ tasks {
             exclude(dependency("org.jetbrains.kotlin:.*"))
             exclude(dependency("org.bouncycastle:.*"))
             exclude(dependency("app.revanced:.*"))
- exclude(dependency("kofua.app.revanced:.*"))
         }
     }
 
@@ -80,8 +79,6 @@ tasks {
     }
 }
 
-// Needed by gradle-semantic-release-plugin.
-// Tracking: https://github.com/KengoTODA/gradle-semantic-release-plugin/issues/435
 
 // The maven-publish is also necessary to make the signing plugin work.
 publishing {
