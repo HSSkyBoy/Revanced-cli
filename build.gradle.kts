@@ -71,7 +71,7 @@ tasks {
             exclude(dependency("org.jetbrains.kotlin:.*"))
             exclude(dependency("org.bouncycastle:.*"))
             exclude(dependency("app.revanced:.*"))
-	            exclude(dependency("kofua.app.revanced:.*"))
+ exclude(dependency("kofua.app.revanced:.*"))
         }
     }
 
