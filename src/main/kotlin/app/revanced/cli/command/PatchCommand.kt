@@ -12,6 +12,7 @@ import kotlinx.coroutines.runBlocking
 import picocli.CommandLine
 import picocli.CommandLine.ArgGroup
 import picocli.CommandLine.Help.Visibility.ALWAYS
+import picocli.CommandLine.ITypeConverter
 import picocli.CommandLine.Model.CommandSpec
 import picocli.CommandLine.Spec
 import java.io.File
@@ -181,6 +182,14 @@ internal object PatchCommand : Runnable {
     )
     private var purge: Boolean = false
 
+    @CommandLine.Option(
+        names = ["--signing-levels"],
+        description = ["Output apk signing levels, eg. \"1,2,3\", empty as default."],
+        converter = [SignLevelsConverter::class],
+        arity = "0..1",
+    )
+    private var signLevels = listOf<Int>()
+
     @CommandLine.Parameters(
         description = ["APK file to patch."],
         arity = "1",
@@ -206,7 +215,7 @@ internal object PatchCommand : Runnable {
     @Suppress("unused")
     private fun setPatchesFile(patchesFiles: Set<File>) {
         patchesFiles.firstOrNull { !it.exists() }?.let {
-            throw CommandLine.ParameterException(spec.commandLine(), "${it.name} can't be found")
+            throw CommandLine.ParameterException(spec.commandLine(), "当前路径下未找到 ${it.name}")
         }
         this.patchesFiles = patchesFiles
     }
@@ -233,7 +242,7 @@ internal object PatchCommand : Runnable {
 
         val outputFilePath =
             outputFilePath ?: File("").absoluteFile.resolve(
-                "${apk.nameWithoutExtension}-patched.${apk.extension}",
+                "${apk.nameWithoutExtension}-patched@bbx_show.${apk.extension}",
             )
 
         val temporaryFilesPath =
@@ -430,5 +439,11 @@ internal object PatchCommand : Runnable {
                 "Failed to purge resource cache directory"
             }
         logger.info(result)
+    }
+    
+    class SignLevelsConverter : ITypeConverter<List<Int>> {
+        override fun convert(value: String): List<Int> {
+            return value.split(",").map { it.toInt() }
+        }
     }
 }
